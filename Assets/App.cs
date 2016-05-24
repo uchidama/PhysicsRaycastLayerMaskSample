@@ -40,20 +40,18 @@ public class App : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		// テキストフィールドを表示する
-		GUI.TextArea(new Rect(10, 10, 200, 100), "Push Z To ON LayerMask.\nPush X To OFF LayerMask.");
+		if (m_LayerMask) {
+			GUI.TextArea (new Rect (10, 10, 250, 100), "Push Space Key To OFF LayerMask.\nON Now.");
+		} else {
+			GUI.TextArea(new Rect (10, 10, 250, 100), "Push Space Key To ON LayerMask.\nOFF Now.");
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 	
-		if (Input.GetKeyDown (KeyCode.Z)) {
-			m_LayerMask = true;
-			Debug.Log ("LayerMask ON");
-		}
-		if (Input.GetKeyDown (KeyCode.X)) {
-			m_LayerMask = false;
-			Debug.Log ("LayerMask OFF");
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			m_LayerMask = m_LayerMask ? false : true;
 		}
 
 
