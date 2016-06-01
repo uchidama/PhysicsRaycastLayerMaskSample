@@ -9,7 +9,7 @@ public class App : MonoBehaviour {
 	public Material m_CubeMaterial;
 	public GameObject m_CubeObj;
 
-	bool m_LayerMask = true;
+	bool m_LayerMask = false;
 
 	// Use this for initialization
 	void Start () {
@@ -40,21 +40,19 @@ public class App : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		if (m_LayerMask) {
-			GUI.TextArea (new Rect (10, 10, 250, 100), "Push Space Key To OFF LayerMask.\nON Now.");
-		} else {
-			GUI.TextArea(new Rect (10, 10, 250, 100), "Push Space Key To ON LayerMask.\nOFF Now.");
-		}
+
+		GUI.Box(new Rect(10 , 45 ,130 , 120), "");
+		if (GUI.Button (new Rect (20, 55, 110, 20), "LayerMask ON"))
+			m_LayerMask = true;
+		if (GUI.Button (new Rect (20, 90, 110, 20), "LayerMask OFF"))
+			m_LayerMask = false;
+
+
 	}
 
 	// Update is called once per frame
 	void Update () {
 	
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			m_LayerMask = m_LayerMask ? false : true;
-		}
-
-
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
